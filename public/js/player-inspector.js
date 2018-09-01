@@ -21,6 +21,9 @@ var playerInspector = (function () {
 	var highQBColor = d3.rgb(200, 0, 0);
 	var lowQBColor = d3.rgb(0, 200, 0);
 
+	var dangerTextColor = d3.rgb(255, 0 , 0);
+
+
 	function setPositionRankScales() {
 
 		// QB SCALES
@@ -219,6 +222,20 @@ var playerInspector = (function () {
 					return "pc-team-" + d.id;
 				})
 				.classed("pc-label", 1)
+				.style("background", function(d) {
+					var team = fantasyFB.model.getTeamByTricode(d.team);
+					var byeWeek = (team) ? team.byeWeek : "N/A";
+
+					// if position on team has this byeWeek show Red...
+					for (var i = 0; i < fantasyFB.model.myDraft.length; i++ ) {
+						var player = fantasyFB.model.myDraft[i];
+						console.log("bye week ", byeWeek === player.byeWeek);
+						if (player.byeWeek === byeWeek && player.position === d.position) {
+							
+							return dangerTextColor;
+						}
+					}
+				})
 				.text(function (d) {
 					var team = fantasyFB.model.getTeamByTricode(d.team);
 					var bye = (team) ? team.byeWeek : "N/A";

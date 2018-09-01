@@ -22,6 +22,8 @@ var playerList = (function() {
 
 	var selectedColor = d3.rgb(207, 144, 46);
 
+	var dangerTextColor = d3.rgb(255, 0 , 0);
+
 	var oddRowColor = d3.rgb(21, 41, 53);
 	var evenRowColor = d3.rgb(29, 59, 77);
 
@@ -135,6 +137,20 @@ var playerList = (function() {
 				})
 
 			tableRow.append("td")
+				.style("background", function(d) {
+					var team = fantasyFB.model.getTeamByTricode(d.team);
+					var byeWeek = (team) ? team.byeWeek : "N/A";
+
+					// if position on team has this byeWeek show Red...
+					for (var i = 0; i < fantasyFB.model.myDraft.length; i++ ) {
+						var player = fantasyFB.model.myDraft[i];
+						console.log("bye week ", byeWeek === player.byeWeek);
+						if (player.byeWeek === byeWeek && player.position === d.position) {
+							
+							return dangerTextColor;
+						}
+					}
+				})
 				.text(function(d) {
 					var team = fantasyFB.model.getTeamByTricode(d.team);
 					return (team) ? team.byeWeek : "N/A";
