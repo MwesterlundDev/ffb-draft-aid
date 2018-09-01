@@ -3,11 +3,11 @@ fantasyFB.model = (function() {
 	function loadSchedules() {
 		var self = fantasyFB.model;
 
-		console.log("self: ", self)
+		// console.log("self: ", self)
 				
 		d3.csv("/data/2018_schedule.csv", (data) => {
 
-			console.log("schedule data: ", data);
+			// console.log("schedule data: ", data);
 			data.forEach((teamSchedule) => {
 
 				var team = self.getTeamByTricode(teamSchedule.team)
@@ -99,9 +99,9 @@ fantasyFB.model = (function() {
 					return player;
 				});
 
-				console.log(self.players[0]);
-				console.log(self.players[1]);
-				console.log("teams: ", self.teams);
+				// console.log(self.players[0]);
+				// console.log(self.players[1]);
+				// console.log("teams: ", self.teams);
 
 				self.quarterbacks = self.players.filter((player) => {
 					return player.position === "QB";
@@ -143,7 +143,7 @@ fantasyFB.model = (function() {
 				return qb.team === teamId
 			})
 			
-			console.log("starting qb for team: ", startingQb, teamId);
+			// console.log("starting qb for team: ", startingQb, teamId);
 			return startingQb[0];
 		}
 	}
