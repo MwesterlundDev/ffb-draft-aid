@@ -17,9 +17,14 @@ var playerList = (function() {
 
 	var noTeamColor = d3.rgb(80, 80, 80)
 	var normalTextColor = d3.rgb(220, 220, 220);
+	var notSelectedTextColor = d3.rgb(150, 150, 150);
+	var selectedTextColor = d3.rgb(255, 255, 255);
+
+	var selectedColor = d3.rgb(207, 144, 46);
 
 	var oddRowColor = d3.rgb(21, 41, 53);
 	var evenRowColor = d3.rgb(29, 59, 77);
+
 
 	return {
 		init: function() {
@@ -28,10 +33,17 @@ var playerList = (function() {
 			var table = d3.select("#player-list")
 				.append("table")
 				.attr("id", "player-table")
+
+			$("#clear-selection").on('click', function() {
+				fantasyFB.selection.clearSelection(fantasyFB.selection.PLAYER);
+			})
 			
 		},
 
 		update: function() {
+
+			var selectedPlayers = fantasyFB.selection.players;
+			console.log("player-list.selectedPlayers: ", selectedPlayers);
 
 			var players = fantasyFB.model.filteredPlayers;
 			console.log("playerList.players", players.length)
@@ -71,11 +83,21 @@ var playerList = (function() {
 				.style("color", function(d) {
 					return (d.team === "FA") ? noTeamColor : normalTextColor;
 				})
-				// .style("background", function(d,i) {
-				// 	return (i % 2 === 1) ? oddRowColor : evenRowColor;
-				// }) 
+				.style("color", function(d) {
+					var myColor = {};
+					if (fantasyFB.selection.players.length > 0) {
+						myColor = (fantasyFB.selection.players.indexOf(d.id) >= 0) ? selectedTextColor : notSelectedTextColor;
+					} else {
+						myColor = normalTextColor
+					}
+					// console.log("my color: ", myColor)
+					// console.log("my color id: ", d.id)
+					// console.log("my color index: ", fantasyFB.selection.players.indexOf(d.id) >= 0)
+					return myColor;
+				}) 
 				.on('click', function(d) {
 					console.log("player Clicked ", d)
+					fantasyFB.selection.select(fantasyFB.selection.PLAYER, [d.id]);
 				})
 				.attr("title", function(d) {
 					return "whatup"

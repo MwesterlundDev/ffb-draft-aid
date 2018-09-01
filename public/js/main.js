@@ -13,6 +13,8 @@ $(document).ready(function() {
 
 	fantasyFB.events.register(fantasyFB.events.DATA_LOAD_COMPLETED, DataLoaded);
 	fantasyFB.events.register(fantasyFB.events.FILTER, postFilter);
+	fantasyFB.events.register(fantasyFB.events.SELECTION, selection)
+	fantasyFB.events.register(fantasyFB.events.CLEAR_SELECTION, clearSelection)
 
 })
 
@@ -25,4 +27,32 @@ function postFilter() {
 	console.log("post filter")
 	playerList.update();
 	filterControls.update();
+}
+
+function selection(selectionObj) {
+
+	var type =  selectionObj.type;	
+
+	switch(type) {
+		case fantasyFB.selection.PLAYER: 
+			playerList.update();
+
+			break;
+		default:
+			console.log("No Controller for selection type: ", type);
+			break;
+	}
+}
+
+function clearSelection(type) {
+
+	switch(type) {
+		case fantasyFB.selection.PLAYER: 
+			playerList.update();
+
+			break;
+		default:
+			console.log("No Controller for selection type: ", type);
+			break;
+	}
 }
