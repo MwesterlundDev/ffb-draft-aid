@@ -57,7 +57,7 @@ var myTeam = (function() {
 				})
 
 			playerRow.append("label")
-				.classed("drafted-label", 1)
+				.classed("drafted-bye-label", 1)
 				.text(function(d) {
 					return d.byeWeek;
 				})

@@ -213,6 +213,7 @@ tbody td {
 
 .pc-name-label {
 	font-size: 20px;
+	cursor: pointer;
 
 }
 .card-left-top {
@@ -250,9 +251,11 @@ tbody td {
 	margin-left: 10px;
 }
 
-.drafted-row {
+.drafted-players {
 	height: 30px;
 	margin: 10px 0 10px 3px;
+	background: linear-gradient(to top, rgba(8, 146, 231, .2), rgb(8, 146, 231, .05));
+	border-bottom: 1px solid rgb(8, 146, 231)
 }
 
 .drafted-position-label {
@@ -264,4 +267,12 @@ tbody td {
 
 .drafted-label {
 	margin: 0 2px 0 2px;
+}
+
+.drafted-bye-label {
+	display: block;
+	float: right; 
+	width: 30px; 
+	background: rgb(134, 101, 100);
+	border: 1px solid rgb(255, 255, 255);
 }

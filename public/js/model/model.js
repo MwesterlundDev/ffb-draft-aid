@@ -150,17 +150,35 @@ fantasyFB.model = (function() {
 				// console.log(self.players[1]);
 				// console.log("teams: ", self.teams);
 
-				self.quarterbacks = self.players.filter((player) => {
-					return player.position === "QB";
-				})
-
 				self.players.sort((playerA, playerB) => {
 					return playerB.projectedPoints - playerA.projectedPoints;
 				})
 
-				self.quarterbacks.sort((qbA, qbB) => {
-					return qbB.projectedPoints - qbA.projectedPoints;
+				self.quarterbacks = self.players.filter((player) => {
+					return player.position === "QB";
 				})
+
+				self.runningbacks = self.players.filter((player) => {
+					return player.position === "RB";
+				})
+
+				self.recievers = self.players.filter((player) => {
+					return player.position === "WR";
+				})
+
+				self.tightEnds = self.players.filter((player) => {
+					return player.position === "TE";
+				})
+
+				self.kickers = self.players.filter((player) => {
+					return player.position === "PK";
+				})
+
+				
+
+				// self.quarterbacks.sort((qbA, qbB) => {
+				// 	return qbB.projectedPoints - qbA.projectedPoints;
+				// })
 				
 				self.teams.forEach((team) => {
 					team.quarterback = self.getPlayersStartingQBByTeam(team.tricode);
@@ -240,45 +258,47 @@ fantasyFB.model = (function() {
 				return playerB.projectedPoints - playerA.projectedPoints;
 			})
 
-			//TODO: Set myTeam
-			var qbCount = 0;
-			var rbCount = 0;
-			var wrCount = 0;
-			var teCount = 0;
-			var pkCount = 0;
-
-			self.myDraft.forEach((player) => {
-				switch(player.position) {
-					case "QB": 
-						qbCount++;
-						player.fantasyPosition = "qb" + qbCount;
-						break;
-					case "RB": 
-						rbCount++;
-						player.fantasyPosition = "rb" + qbCount;
-						break;
-					case "WR": 
-						qbCount++;
-						player.fantasyPosition = "wr" + qbCount;
-						break;
-					case "TE": 
-						teCount++;
-						player.fantasyPosition = "te" + qbCount;
-						break;
-					case "PK": 
-						pkCount++;
-						player.fantasyPosition = "pk" + qbCount;
-						break;
-				}
-			})
-
 
 			// console.log("myTeam: ", this.myDraft);
 
 			self.playerPicked(player.id)
 			fantasyFB.events.send(fantasyFB.events.PLAYER_DRAFTED, player);
 
+		},
+
+		getPositionRank: function(player) {
+
+			var index = 0;
+			var length = 0;
+			switch (player.position) {
+				case "QB":
+					var index = findIndexByValue(fantasyFB.model.quarterbacks, "id", player.id);
+					var length = fantasyFB.model.quarterbacks.length;
+					break;
+				case "RB":
+					var index = findIndexByValue(fantasyFB.model.runningbacks, "id", player.id);
+					var length = fantasyFB.model.runningbacks.length;
+					break;
+				case "WR":
+					var index = findIndexByValue(fantasyFB.model.recievers, "id", player.id);
+					var length = fantasyFB.model.recievers.length;
+					break;
+				case "TE":
+					var index = findIndexByValue(fantasyFB.model.tightEnds, "id", player.id);
+					var length = fantasyFB.model.tightEnds.length;
+					break;
+				case "PK":
+					var index = findIndexByValue(fantasyFB.model.kickers, "id", player.id);
+					var length = fantasyFB.model.kickers.length;
+					break;
+			
+				default:
+					break;
+			}
+
+			return {index: index + 1, length: length};
 		}
+
 
 
 
