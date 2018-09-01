@@ -9,6 +9,7 @@ $(document).ready(function() {
 	fantasyFB.model.init();
 
 	playerList.init();
+	filterControls.init();
 
 	fantasyFB.events.register(fantasyFB.events.DATA_LOAD_COMPLETED, DataLoaded);
 
@@ -16,4 +17,5 @@ $(document).ready(function() {
 
 function DataLoaded() {
 	playerList.update();
+	filterControls.update();
 }

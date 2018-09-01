@@ -34,7 +34,7 @@ var playerList = (function() {
 
 			// TODO: change to filtered players
 			var players = fantasyFB.model.players;
-			console.log("playerList.players", players)
+			// console.log("playerList.players", players)
 
 			var table = d3.select("#player-table")
 

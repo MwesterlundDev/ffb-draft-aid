@@ -35,6 +35,15 @@ fantasyFB.model = (function() {
 		teams: [],
 		quarterbacks: [],
 
+		positions: [
+			'ALL',
+			'RB',
+			'QB',
+			'WR',
+			'TE',
+			'PK',
+		],
+
 		init: function() {
 			var self = this;
 			console.log("init fantasyFB");
