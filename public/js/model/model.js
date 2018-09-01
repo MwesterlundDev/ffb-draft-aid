@@ -100,7 +100,9 @@ fantasyFB.model = (function() {
 						rushYards: Number(tempPlayer.rushYards),
 						team: tempPlayer.team,
 						totalTDs: Number(tempPlayer.totalTDs),
-						totalYards: Number(tempPlayer.totalYards)
+						totalYards: Number(tempPlayer.totalYards),
+						picked: false
+
 					}
 
 					//TODO: point calculations...
@@ -156,6 +158,16 @@ fantasyFB.model = (function() {
 			
 			// console.log("starting qb for team: ", startingQb, teamId);
 			return startingQb[0];
+		},
+
+		playerPicked: function(id) {
+			var self = this;
+
+			var player = self.getPlayerById(id);
+			player.picked = true;
+			fantasyFB.filter.doFilter();
 		}
+
+
 	}
 })();

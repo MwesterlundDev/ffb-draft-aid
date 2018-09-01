@@ -7,9 +7,6 @@ var filterControls = (function () {
 	return {
 		init: function () {
 			console.log("init filter Controls")
-
-
-
 		},
 
 		update: function () {

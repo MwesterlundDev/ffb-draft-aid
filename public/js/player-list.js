@@ -3,6 +3,7 @@
 var playerList = (function() {
 
 	var columns = [
+		"",
 		"Name",
 		"Position",
 		"Team",
@@ -80,6 +81,16 @@ var playerList = (function() {
 					return "whatup"
 				})
 				
+
+			tableRow.append("td")
+				.text(function(d) {
+					return "picked";
+				})
+				.on("click", function(d) {
+					event.stopPropagation() 
+					console.log("player picked: ", d)
+					fantasyFB.model.playerPicked(d.id);
+				})
 
 			tableRow.append("td")
 				.text(function(d) {
