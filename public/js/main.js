@@ -10,6 +10,7 @@ $(document).ready(function() {
 
 	playerList.init();
 	filterControls.init();
+	playerInspector.init();
 
 	fantasyFB.events.register(fantasyFB.events.DATA_LOAD_COMPLETED, DataLoaded);
 	fantasyFB.events.register(fantasyFB.events.FILTER, postFilter);
@@ -36,6 +37,7 @@ function selection(selectionObj) {
 	switch(type) {
 		case fantasyFB.selection.PLAYER: 
 			playerList.update();
+			playerInspector.update();
 
 			break;
 		default:
@@ -49,6 +51,8 @@ function clearSelection(type) {
 	switch(type) {
 		case fantasyFB.selection.PLAYER: 
 			playerList.update();
+			playerInspector.update();
+
 
 			break;
 		default:

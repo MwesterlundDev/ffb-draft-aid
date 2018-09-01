@@ -166,6 +166,21 @@ fantasyFB.model = (function() {
 			var player = self.getPlayerById(id);
 			player.picked = true;
 			fantasyFB.filter.doFilter();
+		}, 
+
+		getPlayersByIds: function(ids) {
+			var self = this;
+
+			if (!Array.isArray(ids)) {
+				ids = [ids];
+			}
+
+			var players = self.players.filter((player) => {
+				return (ids.indexOf(player.id) >= 0)
+			})
+
+			return players;
+
 		}
 
 
