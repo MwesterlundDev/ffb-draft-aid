@@ -1,7 +1,7 @@
 html, body {
 	margin: 0px;
 	font-family : Arial;
-	background-color: rgb(80, 80, 80);
+	background-color: rgb(21, 41, 53);
 	color: rgb(220, 220, 220);
 	height: 100%;
 	width: 100%;
@@ -40,6 +40,7 @@ html, body {
 	clear: right;
 	/* background: rgb(0, 0, 255); */
 	position: relative;
+	overflow-y: auto;
 }
 
 #player-inspector {
@@ -53,12 +54,28 @@ html, body {
 
 #player-table {
 	height: 400px;
-	overflow-y: auto;
+	width: 100%;
 }
 
 .player-row {
 	height: 15px;
 	font-size: 12px;
+}
+
+tr:hover {
+	background: rgb(45, 107, 146);
+}
+
+tbody tr:nth-child(odd):hover {
+	background: rgb(45, 107, 146);
+}
+
+tbody tr:nth-child(odd) {
+	background: rgb(29, 59, 77);
+}
+
+tbody td {
+	cursor: pointer;
 }
 
 #player-list-header-row {
@@ -68,7 +85,4 @@ html, body {
 	font-size: 10px;
 }
 
-.table-header-col {
-	display: inline-block;
 
-}
