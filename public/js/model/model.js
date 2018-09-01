@@ -32,8 +32,10 @@ fantasyFB.model = (function() {
 	// public model stuff
 	return {
 		players: [],
+		filteredPlayers: [],
 		teams: [],
 		quarterbacks: [],
+
 
 		positions: [
 			'ALL',

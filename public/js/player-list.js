@@ -32,11 +32,12 @@ var playerList = (function() {
 
 		update: function() {
 
-			// TODO: change to filtered players
-			var players = fantasyFB.model.players;
-			// console.log("playerList.players", players)
+			var players = fantasyFB.model.filteredPlayers;
+			console.log("playerList.players", players.length)
 
 			var table = d3.select("#player-table")
+
+			table.selectAll('tr').remove();
 
 			var header = table.append("thead")
 				.append("tr")
@@ -58,7 +59,6 @@ var playerList = (function() {
 			
 			var tbody = table.append("tbody");
 
-			tbody.selectAll(".player-row").remove();
 			var tableRows = tbody.selectAll(".player-row")
 				.data(players)
 				.enter();

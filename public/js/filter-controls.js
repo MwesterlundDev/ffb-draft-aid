@@ -2,6 +2,8 @@
 
 var filterControls = (function () {
 
+	var selectedColor = d3.rgb(207, 144, 46);
+
 	return {
 		init: function () {
 			console.log("init filter Controls")
@@ -13,8 +15,10 @@ var filterControls = (function () {
 		update: function () {
 			var positionsControls = d3.select("#position-controls");
 
-			positionsControls.selectAll(".positions").remove();
-			var positionDiv = positionsControls.selectAll(".positions")
+			var positionFilter = fantasyFB.filter.getPositionFilter();
+
+			positionsControls.selectAll(".pos").remove();
+			var positionDiv = positionsControls.selectAll(".pos")
 				.data(fantasyFB.model.positions)
 				.enter();
 
@@ -23,8 +27,16 @@ var filterControls = (function () {
 					return "pos-" + d;
 				})
 				.classed("pos", 1)
+				.style("background", function(d) {
+					if (positionFilter.length === 0) {
+						return (d === "ALL") ? selectedColor : "none";
+					}
+
+					return (positionFilter.indexOf(d) >=0 ) ? selectedColor : "none";
+				})
 				.on("click", function(d) {
 					console.log("position clicked: ", d)
+					fantasyFB.filter.filter(fantasyFB.filter.POSITION_FILTER, [d])
 				}) 
 				
 			posDiv.append("label")

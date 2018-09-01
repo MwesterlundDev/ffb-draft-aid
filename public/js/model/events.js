@@ -7,6 +7,8 @@ fantasyFB.events = (function() {
 	return {
 
 		DATA_LOAD_COMPLETED: "data_load_complete",
+
+		FILTER: "filter",
 		/**
 		 * Registers a function to listen for an event to be dispatched.
 		 * Both parameters must be defined to register.
