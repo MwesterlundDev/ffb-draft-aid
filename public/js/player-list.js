@@ -106,7 +106,7 @@ var playerList = (function() {
 
 			tableRow.append("td")
 				.text(function(d) {
-					return "picked";
+					return "Picked";
 				})
 				.on("click", function(d) {
 					event.stopPropagation() 

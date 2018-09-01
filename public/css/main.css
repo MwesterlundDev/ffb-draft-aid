@@ -194,7 +194,7 @@ tbody td {
 	clear: left;
 	width: calc(100% - 10px);
 	padding: 2px;
-	border: 1px solid rgb(255, 255, 255);
+	/* border: 1px solid rgb(255, 255, 255); */
 }
 
 .card-left {
@@ -202,7 +202,7 @@ tbody td {
 	clear: left;
 	width: 300px;
 	padding: 10px;
-	border: 1px solid rgb(255, 255, 255);
+	/* border: 1px solid rgb(255, 255, 255); */
 }
 
 .card-left label {
@@ -213,7 +213,7 @@ tbody td {
 
 .pc-name-label {
 	font-size: 20px;
-	
+
 }
 .card-left-top {
 	float: left;
@@ -238,10 +238,30 @@ tbody td {
 	clear: right;
 	width: calc(100% - 344px);
 	padding: 10px;
-	border: 1px solid rgb(255, 255, 255);
+	/* border: 1px solid rgb(255, 255, 255); */
 }
 
 .pc-qb-label {
 	display: inline-block;
 	width: 130px;
+}
+
+.qb-rank {
+	margin-left: 10px;
+}
+
+.drafted-row {
+	height: 30px;
+	margin: 10px 0 10px 3px;
+}
+
+.drafted-position-label {
+	display: inline-block;
+	width: 30px; 
+	background: rgb(100, 134, 103);
+	border: 1px solid rgb(255, 255, 255);
+}
+
+.drafted-label {
+	margin: 0 2px 0 2px;
 }

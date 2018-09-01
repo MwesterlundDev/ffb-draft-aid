@@ -45,7 +45,7 @@ fantasyFB.filter = (function() {
 					return true;
 				}
 				
-				console.log("running filter: ", positionFilter.indexOf(player.position) >= 0);
+				// console.log("running filter: ", positionFilter.indexOf(player.position) >= 0);
 	
 				return positionFilter.indexOf(player.position) >= 0;
 			})

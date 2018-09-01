@@ -12,6 +12,8 @@ fantasyFB.events = (function() {
 
 		SELECTION: "selection",
 		CLEAR_SELECTION: "clearSelection",
+
+		PLAYER_DRAFTED: "playerDrafted",
 		/**
 		 * Registers a function to listen for an event to be dispatched.
 		 * Both parameters must be defined to register.

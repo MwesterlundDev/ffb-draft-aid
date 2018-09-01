@@ -2,10 +2,10 @@
 
 var playerInspector = (function () {
 
-	var QB_SVG_HEIGHT = 30;
+	var QB_SVG_HEIGHT = 18;
 	var QB_SVG_WIDTH = 200;
 
-	var QB_BAR_HEIGHT = 10;
+	var QB_BAR_HEIGHT = QB_SVG_HEIGHT / 3;
 
 	var qbScale;
 	var qbColorScale;
@@ -73,6 +73,10 @@ var playerInspector = (function () {
 			cardLeftTop.append("button")
 				.classed("pc-button", 1)
 				.text("Draft")
+				.on("click", function(d) {
+					fantasyFB.model.draftPlayer(d);
+					fantasyFB.selection.select(fantasyFB.selection.PLAYER, [d.id]);
+				})
 
 			cardLeftTop.append("button")
 				.classed("pc-button", 1)
@@ -165,7 +169,7 @@ var playerInspector = (function () {
 					var qbIndex = findIndexByValue(fantasyFB.model.quarterbacks, "id", qb.id);
 					return qbScale(qbIndex);
 				})
-				.attr("y", 10)
+				.attr("y", QB_BAR_HEIGHT)
 				.attr("height", QB_BAR_HEIGHT)
 				.attr("width", function(d) {
 					var qb = fantasyFB.model.getPlayersStartingQBByTeam(d.team)
@@ -181,6 +185,16 @@ var playerInspector = (function () {
 					return qbColorScale(qbIndex);
 				});
 
+
+			qbDiv.append("label")
+				.classed("qb-rank", 1)
+				.text(function(d) {
+					var qb = fantasyFB.model.getPlayersStartingQBByTeam(d.team)
+
+					var qbIndex = findIndexByValue(fantasyFB.model.quarterbacks, "id", qb.id);
+					return "QB Rank: " + qbIndex + " of " + fantasyFB.model.quarterbacks.length;
+ 
+				})
 			
 		}
 

@@ -11,11 +11,13 @@ $(document).ready(function() {
 	playerList.init();
 	filterControls.init();
 	playerInspector.init();
+	myTeam.init();
 
 	fantasyFB.events.register(fantasyFB.events.DATA_LOAD_COMPLETED, DataLoaded);
 	fantasyFB.events.register(fantasyFB.events.FILTER, postFilter);
 	fantasyFB.events.register(fantasyFB.events.SELECTION, selection)
 	fantasyFB.events.register(fantasyFB.events.CLEAR_SELECTION, clearSelection)
+	fantasyFB.events.register(fantasyFB.events.PLAYER_DRAFTED, playerDrafted)
 
 })
 
@@ -59,4 +61,9 @@ function clearSelection(type) {
 			console.log("No Controller for selection type: ", type);
 			break;
 	}
+}
+
+function playerDrafted () {
+	console.log("Player drafted event")
+	myTeam.update();
 }

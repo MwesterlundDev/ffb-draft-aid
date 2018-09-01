@@ -29,12 +29,46 @@ fantasyFB.model = (function() {
 
 	}
 
+	var starters = {
+		qb: 1,
+		rb: 2,
+		wr: 2,
+		te: 1,
+		flex: 1,
+		pk: 1,
+		bench: 7,
+	}
+
 	// public model stuff
 	return {
 		players: [],
 		filteredPlayers: [],
 		teams: [],
 		quarterbacks: [],
+
+		myDraft: [],
+
+		starters: {
+			qb: null,
+			rb1: null,
+			rb2: null,
+			wr1: null,
+			wr2: null,
+			te: null,
+			flex: null,
+			pk: null,
+	
+		},
+	
+		bench: [
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+			{},
+		],
 
 
 		positions: [
@@ -181,7 +215,72 @@ fantasyFB.model = (function() {
 
 			return players;
 
+		},
+
+		draftPlayer: function(player) {
+			var self = this;
+
+			var team = fantasyFB.model.getTeamByTricode(player.team);
+			var byeWeek = (team) ? team.byeWeek : "N/A";
+
+			
+
+			var myPlayer = {
+				id: player.id,
+				name: player.firstName + " " + player.lastName,
+				byeWeek: byeWeek,
+				projectedPoints: player.projectedPoints,
+				position: player.position,
+				fantasyPosition: "",
+			}
+
+			self.myDraft.push(myPlayer)
+
+			self.myDraft.sort((playerA, playerB) => {
+				return playerB.projectedPoints - playerA.projectedPoints;
+			})
+
+			//TODO: Set myTeam
+			var qbCount = 0;
+			var rbCount = 0;
+			var wrCount = 0;
+			var teCount = 0;
+			var pkCount = 0;
+
+			self.myDraft.forEach((player) => {
+				switch(player.position) {
+					case "QB": 
+						qbCount++;
+						player.fantasyPosition = "qb" + qbCount;
+						break;
+					case "RB": 
+						rbCount++;
+						player.fantasyPosition = "rb" + qbCount;
+						break;
+					case "WR": 
+						qbCount++;
+						player.fantasyPosition = "wr" + qbCount;
+						break;
+					case "TE": 
+						teCount++;
+						player.fantasyPosition = "te" + qbCount;
+						break;
+					case "PK": 
+						pkCount++;
+						player.fantasyPosition = "pk" + qbCount;
+						break;
+				}
+			})
+
+
+			// console.log("myTeam: ", this.myDraft);
+
+			self.playerPicked(player.id)
+			fantasyFB.events.send(fantasyFB.events.PLAYER_DRAFTED, player);
+
 		}
+
+
 
 
 	}
