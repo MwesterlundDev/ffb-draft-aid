@@ -19,14 +19,12 @@ fantasyFB.model = (function() {
 							team.byeWeek = Number(prop);
 						}
 						
-						team.schedule.push(teamSchedule[prop])
+						team.schedule.push(teamSchedule[prop]);
 					}
 				}
-
 			})
-
-			console.log(self.teams)
-
+			// console.log(self.teams)
+			fantasyFB.events.send(fantasyFB.events.DATA_LOAD_COMPLETED, true);
 		});
 
 	}
@@ -39,7 +37,6 @@ fantasyFB.model = (function() {
 		init: function() {
 			var self = this;
 			console.log("init fantasyFB");
-
 
 			d3.csv("/data/Huddle_Projections.csv", function(data) {
 				var tempPlayers = data.filter((player) => {
@@ -75,10 +72,7 @@ fantasyFB.model = (function() {
 
 				loadSchedules();
 			});
-
-			
 		},
-
 
 		getTeamByTricode: function(tricode) {
 			var self = this;

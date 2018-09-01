@@ -2,11 +2,10 @@
 
 var fantasyFB = {};
 
-console.log("fantasyFB: ", fantasyFB);
 
 $(document).ready(function() {
 
-
+	console.log("fantasyFB: ", fantasyFB);
 	fantasyFB.model.init();
 
 })
