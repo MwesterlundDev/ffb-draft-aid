@@ -30,7 +30,7 @@ var playerList = (function() {
 		init: function() {
 
 			console.log("init player list")
-			var table = d3.select("#player-list")
+			var table = d3.select("#player-list-table")
 				.append("table")
 				.attr("id", "player-table")
 

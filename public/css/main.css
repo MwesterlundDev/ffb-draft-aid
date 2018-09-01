@@ -36,12 +36,12 @@ html, body {
 
 #player-list {
 	width: 80%;
-	height: 400px;
+	height: 420px;
 	float: right;
 	clear: right;
 	/* background: rgb(0, 0, 255); */
 	position: relative;
-	overflow-y: auto;
+	/* overflow-y: auto; */
 }
 
 #player-inspector {
@@ -55,6 +55,13 @@ html, body {
 
 
 /* PLAYER TABLE STUFF */
+
+#player-list-table {
+	height: 400px;
+	width: 100%;
+	overflow-y: auto;
+}
+
 #player-table {
 	height: 400px;
 	width: 100%;
@@ -64,6 +71,7 @@ html, body {
 	height: 15px;
 	font-size: 12px;
 }
+
 
 tr:hover {
 	background: rgb(45, 107, 146);
