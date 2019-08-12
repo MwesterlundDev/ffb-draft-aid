@@ -13,9 +13,13 @@ Each player is assigned a rank for projected total points for each position.  Th
 
 ### Usage:
 Click on the filter boxes up top to select a position to filter by
+
 Click on a player row to compare multiple players
+
 Click the “Picked” column for
+
 Click on Draft to add the player to your team
+
 
 
 ## Installation
